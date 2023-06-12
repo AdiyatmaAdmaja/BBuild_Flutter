@@ -11,7 +11,7 @@ class Products with ChangeNotifier {
         id: "id_${index + 1}",
         title: "Produk ${index + 1}",
         description: 'Ini adalah deskripsi produk ${index + 1}',
-        price: 100000 + Random().nextInt(100).toDouble(),
+        price: 100000 + Random().nextInt(100),
         image: 'images/dashboard/${index + 1}.png',
         // qty: 1,
       );

@@ -184,7 +184,7 @@ class ItemPage extends StatelessWidget {
                         ),
                         ElevatedButton.icon(
                           onPressed: () {
-                            cartController.addProduct(product);
+                            cartController.add(product);
                           },
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all(

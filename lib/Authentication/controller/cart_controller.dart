@@ -1,31 +1,22 @@
 import 'package:bbuild/models/product.dart';
-import 'package:get/get.dart';
+import 'package:flutter/cupertino.dart';
 
-class CartController extends GetxController {
-  var _products = {}.obs;
+class CartController extends ChangeNotifier {
+  List<Product> _cart = [];
 
-  void addProduct(Product product) {
-    if (_products.containsKey(product)) {
-      _products[product] += 1;
-    } else {
-      _products[product] = 1;
-    }
+  List<Product> get cart => _cart;
 
-    Get.snackbar(
-      "Produk Ditambahkan",
-      "Anda telah menambahkan ${product.title} ke Keranjang",
-      snackPosition: SnackPosition.BOTTOM,
-      duration: Duration(seconds: 2),
-    );
+  int get cartTotal {
+    return cart.fold(0, (previousValue, element) => previousValue);
   }
 
-  void removeProduct(Product product) {
-    if (_products.containsKey(product) && _products[product] == 1) {
-      _products.removeWhere((key, value) => key == product);
-    } else {
-      _products[product] -= 1;
-    }
+  void add(Product product) {
+    _cart.add(product);
+    notifyListeners();
   }
 
-  get products => _products;
+  void remove(int index) {
+    _cart.removeAt(index);
+    notifyListeners();
+  }
 }
